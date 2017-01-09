@@ -1,0 +1,6 @@
+<container qualifier="chameleon" default="true">
+    <configuration>
+        <property name="chameleonTarget">wildfly:8.2.0.Final:managed</property>
+        <property name="serverConfig">standalone.xml</property>
+    </configuration>
+</container>

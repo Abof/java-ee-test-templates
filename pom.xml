@@ -1,6 +1,97 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.github.abof.test.template</groupId>
-  <artifactId>wildfly82-arquillian-basic</artifactId>
-  <version>1.0.0</version>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.github.abof.test.template</groupId>
+	<artifactId>wildfly82-arquillian-basic</artifactId>
+	<version>1.0.0</version>
+
+	<properties>
+		<!-- Versions management -->
+		<version.junit>4.12</version.junit>
+		<version.arquillian_core>1.1.11.Final</version.arquillian_core>
+		<version.arquillian_chemeleon>1.0.0.Alpha7</version.arquillian_chemeleon>
+		<version.wildfly>8.2.1.Final</version.wildfly>
+		<!-- Fast maven-compiler-plugin source/target configuration -->
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-bom</artifactId>
+				<version>${version.arquillian_core}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>
+	
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${version.junit}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.arquillian.junit</groupId>
+			<artifactId>arquillian-junit-container</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.arquillian.container</groupId>
+			<artifactId>arquillian-container-chameleon</artifactId>
+			<version>1.0.0.Alpha7</version>
+			<scope>${version.arquillian_chemeleon}</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.10</version>
+				<executions>
+					<!-- 
+						NOTICE: Its very likely that Eclipse will raise "Plugin execution 
+						not covered by lifecycle configuration..." error. Run 'mvn install' in command 
+						line and find out that it's working - there's problem with m2e configuration. 
+						To fix that go to Window -> Preferences -> Maven -> Errors/warnings and configure 
+						"Plugin exec. not covered..." as "warrning". 
+					-->
+					<execution>
+						<id>unpack</id>
+						<phase>process-test-classes</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.wildfly</groupId>
+									<artifactId>wildfly-dist</artifactId>
+									<version>${version.wildfly}</version>
+									<type>zip</type>
+									<overWrite>false</overWrite>
+									<outputDirectory>target</outputDirectory>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>
