@@ -51,8 +51,8 @@
 		<dependency>
 			<groupId>org.arquillian.container</groupId>
 			<artifactId>arquillian-container-chameleon</artifactId>
-			<version>1.0.0.Alpha7</version>
-			<scope>${version.arquillian_chemeleon}</scope>
+			<version>${version.arquillian_chemeleon}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
