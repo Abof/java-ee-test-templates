@@ -5,7 +5,7 @@
 	<container qualifier="chameleon" default="true">
 		<configuration>
 			<property name="chameleonTarget">wildfly:8.2.1.Final:managed</property>
-			<property name="serverConfig">standalone.xml</property>
+			<property name="serverConfig">standalone-full.xml</property>
 		</configuration>
 	</container>
 </arquillian>
