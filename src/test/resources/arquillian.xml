@@ -2,10 +2,31 @@
 <arquillian xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://jboss.org/schema/arquillian"
 	xsi:schemaLocation="http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
-	<container qualifier="chameleon" default="true">
+
+	<!-- 
+		Default Configuration with unmodified standalone-full.xml from downloaded distribution .
+	-->
+	<container qualifier="untouched_standalone_full" default="true">
 		<configuration>
+			<!-- Define adabter to be used by arquillian : Wildfly v.8.2.1.Final (managed) -->
 			<property name="chameleonTarget">wildfly:8.2.1.Final:managed</property>
+
 			<property name="serverConfig">standalone-full.xml</property>
 		</configuration>
 	</container>
+
+	<!-- 
+		Configurations with custom standalone-full.xml for more demanding tests
+	-->
+	<container qualifier="jms_tests_standalone_full_xml">
+		<configuration>
+			<!-- Define adabter to be used by arquillian : Wildfly v.8.2.1.Final (managed) -->
+			<property name="chameleonTarget">wildfly:8.2.1.Final:managed</property>
+			<!-- Tell Wildfly that look for config files int test resources dir-->
+			<property name="javaVmArguments">-Djboss.server.config.dir=${project.baseDir}/src/test/resources/server-configuration/</property>
+			<!-- Tell Wildfly which config.xml choose from test resources -->
+			<property name="serverConfig">#jms-standalone-full.xml</property>
+		</configuration>
+	</container>
+	<!-- ${project.baseDir} -->
 </arquillian>

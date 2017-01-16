@@ -16,12 +16,6 @@ import javax.jms.JMSDestinationDefinitions;
 
 import org.apache.log4j.Logger;
 
-@JMSDestinationDefinitions(value = {
-    @JMSDestinationDefinition(
-        name = "java:/queue/BirthdayWishesQueue",
-        interfaceName = "javax.jms.Queue"
-    )
-})
 @Stateless
 @LocalBean
 public class TestMsgProducer {
@@ -29,8 +23,8 @@ public class TestMsgProducer {
 	@Inject
 	private JMSContext context;
 
-	@Resource(lookup="java:/queue/BirthdayWishesQueue") //ok lookup="java:/DBirthdayWishesQueue"
-	private Destination destination;
+	@Resource(lookup="java:/jms/queue/BirthdayWishesQueue") //ok lookup="java:/DBirthdayWishesQueue"
+	private Queue destination;
 	
 	public void sendMsg(String msgText) throws JMSException {
 		

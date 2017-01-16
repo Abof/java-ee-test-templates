@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 
 @MessageDriven(activationConfig = {
 	@ActivationConfigProperty(propertyName="destinationType", propertyValue="javax.jms.Queue"),
-	@ActivationConfigProperty(propertyName="destinationLookup", propertyValue="java:/queue/BirthdayWishesQueue")
+	@ActivationConfigProperty(propertyName="destinationLookup", propertyValue="java:/jms/queue/BirthdayWishesQueue")
 })
 public class MDBConsumer implements MessageListener {
 
