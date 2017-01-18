@@ -1,4 +1,4 @@
-package pl.abof.test_template.arquillian.wf.basic;
+package pl.abof.test_template.arquillian.wf.session;
 
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Stream.generate;

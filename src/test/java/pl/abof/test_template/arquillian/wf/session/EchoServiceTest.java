@@ -1,4 +1,4 @@
-package pl.abof.test_template.arquillian.wf.basic;
+package pl.abof.test_template.arquillian.wf.session;
 
 import static org.junit.Assert.*;
 
@@ -16,7 +16,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import pl.abof.test_template.arquillian.util.ear.AutoApplicationDescriptionBuilder;
-import pl.abof.test_template.arquillian.wf.basic.EchoService;
+import pl.abof.test_template.arquillian.wf.session.EchoService;
 
 
 @RunWith(Arquillian.class)
