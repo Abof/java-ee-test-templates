@@ -9,6 +9,7 @@
 		<!-- Versions management -->
 		<version.arquillian_core>1.1.11.Final</version.arquillian_core>
 		<version.arquillian_chemeleon>1.0.0.Alpha7</version.arquillian_chemeleon>
+        <version.arquillian_persistence>1.0.0.Alpha5</version.arquillian_persistence>
 		<jboss.logmanager.version>2.0.4.Final</jboss.logmanager.version>
 		<version.junit>4.12</version.junit>
 		<!-- Fast maven-compiler-plugin source/target configuration -->
@@ -73,6 +74,20 @@
 			<artifactId>shrinkwrap-descriptors-impl-javaee</artifactId>
 		</dependency>
 
+		<!-- ARQUILLIAN PERSISTENCE EXTENSION -->
+		<dependency>
+            <groupId>org.jboss.arquillian.extension</groupId>
+            <artifactId>arquillian-persistence-api</artifactId>
+            <version>${version.arquillian_persistence}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.extension</groupId>
+            <artifactId>arquillian-persistence-impl</artifactId>
+            <version>${version.arquillian_persistence}</version>
+            <scope>test</scope>
+        </dependency>
+
 		<!-- UTILS and OBVIOUS DEPS -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -134,7 +149,7 @@
 			</build>
 		</profile>
 		
-			<profile>
+		<profile>
 			<id>CDI</id>
 			  <activation>
 		    </activation>
@@ -178,7 +193,30 @@
 						</configuration>
 					</plugin>
 				</plugins>
-	
+			</build>
+		</profile>
+
+		<profile>
+			<id>JPA</id>
+			  <activation>
+		    </activation>
+		    
+		    <dependencies>
+
+		    </dependencies>
+		    
+		    <build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<includes>
+								<include>**/BasicCruderTest.java</include>
+							</includes>
+						</configuration>
+					</plugin>
+				</plugins>
 			</build>
 		</profile>
 	</profiles>

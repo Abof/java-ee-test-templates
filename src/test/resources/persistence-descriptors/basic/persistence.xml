@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+	<!-- Name is very important - we'll refer to it in beans -->
+	<persistence-unit name="BasicPU" transaction-type="JTA">
+		<description>
+			Persistence unit for basic tests. Configured with example in-memory H2
+			database which is created by default by WildFly and serves as a test
+			data source.
+		</description>
+		
+		<!-- Compare below name with WildFly's default standalone-full.xml -->
+		<jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
+		
+		<!-- Since we know that there's Hibernate as a ORM in Wildfly let's configure it :) -->
+		<properties>
+			<property 
+				name="hibernate.dialect" 
+				value="org.hibernate.dialect.HSQLDialect"/>  
+	        <property 
+	        	name="hibernate.show_sql" 
+	        	value="true"/>    
+	        <property 
+	        	name="hibernate.connection.driver_class" 
+	        	value="org.hsqldb.jdbcDriver"/>   
+	        <property 
+	        	name="hibernate.connection.username" 
+	        	value="sa"/>  
+	        <property 
+	        	name="hibernate.connection.password" 
+	        	value="sa"/>
+		</properties>
+	</persistence-unit>
+</persistence>
