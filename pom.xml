@@ -114,7 +114,7 @@
 				Deafault profile - use standard 'standalone-full.xml' configuration.
 				In surefire plugin we have to exclude test from other profiles...
 			-->
-			<id>WF_EJB_BASIC</id>
+			<id>EJB_BASIC</id>
 			  <activation>
 		      <activeByDefault>true</activeByDefault>
 		    </activation>
@@ -135,7 +135,7 @@
 		</profile>
 		
 			<profile>
-			<id>WF_CDI</id>
+			<id>CDI</id>
 			  <activation>
 		    </activation>
 		    <build>
@@ -159,7 +159,7 @@
 				configuration file. How? We are setting 'arquillian.launch' property that 
 				tells Arquilian engine which container setup choose from many in 'arquillian.xml ' 
 			-->
-			<id>JMS_TESTS</id>
+			<id>JMS</id>
 			<build>
 				<plugins>
 					<plugin>
