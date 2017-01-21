@@ -1,11 +1,12 @@
 package pl.abof.test_template.arquillian.wf.cdi.operation;
 
-import javax.enterprise.inject.Alternative;
+import javax.ejb.Stateless;
 import javax.inject.Named;
 
 import pl.abof.test_template.arquillian.wf.cdi.Value;
 
 @Named("SubtractOne")
+@Stateless
 public class SubtractOne implements Operation {
 
 	@Override
@@ -13,4 +14,8 @@ public class SubtractOne implements Operation {
 		v.set(v.get() - 1);
 	}
 	
+	@Override
+	public String getName() {
+		return "SubtractOne";
+	}
 }
